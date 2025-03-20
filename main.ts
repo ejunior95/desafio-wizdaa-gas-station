@@ -1,14 +1,22 @@
 (() => {
-    const strArr = ["4","3:1","2:2","1:2","0:1"];
-    let initialGalons = 0;
-    strArr.forEach((item, index) => {
-        if(index > 0) {
-            const slipttedItens = item.split(':')
-            console.log('Partial slipttedItens: ', slipttedItens);
-            initialGalons += Number(slipttedItens[0]);
-            initialGalons -= Number(slipttedItens[1]);
-        }
-        console.log('Partial results: ', initialGalons);
-    })
-    console.log('Result: ', initialGalons);
+    // const possibleStrArr = ["4","3:1","2:2","1:2","0:1"];
+    const impossibleStrArr = ["4","0:1","2:2","1:2","3:1"];
+    const gasStationIndexRoutePossible = [];
+    for (let i = 1; i < 2; i++) {
+        let gainGalons = 0;
+        let lostGalons = 0;
+        impossibleStrArr.forEach((item, index) => {
+            if (index > 0) {
+                const splittedStr = item.split(':');
+                gainGalons += Number(splittedStr[0]);
+                lostGalons += Number(splittedStr[1]);
+            };
+        });
+        if (gainGalons - lostGalons >= 0) gasStationIndexRoutePossible.push(i);
+    };
+    
+    gasStationIndexRoutePossible.length ? 
+    console.log('Output: ', gasStationIndexRoutePossible[0]) : 
+    console.log('Impossible');
+
 })();
